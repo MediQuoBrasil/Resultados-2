@@ -405,6 +405,56 @@
     </div>
   </div>
 
+  <!-- SECTION 4: Presença / Falta -->
+  <div class="section-title">Comparecimento em agendamentos</div>
+  <div class="attendance-highlight">
+    <div class="att-card">
+      <div class="att-ring">
+        <canvas id="presencaRing"></canvas>
+        <div class="att-ring-label">
+          <div class="pct green">67,3%</div>
+          <div class="pct-label" style="color: var(--accent-emerald);">Presença</div>
+        </div>
+      </div>
+      <div class="att-info">
+        <h4 class="green">Compareceram</h4>
+        <p>Pacientes que compareceram aos agendamentos realizados</p>
+        <div class="att-number green">4.205</div>
+      </div>
+    </div>
+    <div class="att-card">
+      <div class="att-ring">
+        <canvas id="faltaRing"></canvas>
+        <div class="att-ring-label">
+          <div class="pct red">32,7%</div>
+          <div class="pct-label" style="color: var(--accent-rose);">Falta</div>
+        </div>
+      </div>
+      <div class="att-info">
+        <h4 class="red">Faltaram</h4>
+        <p>Pacientes que não compareceram aos agendamentos realizados</p>
+        <div class="att-number red">2.046</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-grid">
+    <div class="chart-card">
+      <h3>Presença x Falta</h3>
+      <div class="chart-subtitle">Total: 6.251 agendamentos</div>
+      <div class="chart-wrapper pie-wrapper">
+        <canvas id="presencaPie"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <h3>Presença x Falta - Barras</h3>
+      <div class="chart-subtitle">Visão comparativa</div>
+      <div class="chart-wrapper bar-wrapper">
+        <canvas id="presencaBar"></canvas>
+      </div>
+    </div>
+  </div>
+
   <!-- SECTION 5: Agendamentos por área -->
   <div class="section-title">Agendamentos por Área</div>
   <div class="chart-grid">
@@ -630,7 +680,21 @@
     ['#f59e0b', '#4a1ea7', '#10b981', '#b83dba']
   ));
 
-  // NOTE: seção "Comparecimento em agendamentos" removida (HTML + charts)
+  // ===== 4. PRESENÇA / FALTA =====
+  new Chart(document.getElementById('presencaRing'), ringConfig(67.27, '#10b981', '#e8f5f0'));
+  new Chart(document.getElementById('faltaRing'), ringConfig(32.73, '#f43f5e', '#fde8ec'));
+
+  new Chart(document.getElementById('presencaPie'), pieConfig(
+    ['Compareceu', 'Faltou'],
+    [4205, 2046],
+    ['#10b981', '#f43f5e']
+  ));
+
+  new Chart(document.getElementById('presencaBar'), barConfig(
+    ['Compareceu (67,27%)', 'Faltou (32,73%)'],
+    [4205, 2046],
+    ['#10b981', '#f43f5e']
+  ));
 
   // ===== 5. AGENDAMENTOS POR ÁREA =====
   new Chart(document.getElementById('agendPie'), pieConfig(
